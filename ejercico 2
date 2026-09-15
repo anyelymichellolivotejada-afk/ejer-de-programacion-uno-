@@ -1,1 +1,89 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.Remoting.Messaging;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp3
+{
+    public class Program
+    {
+        static void Main(string[] args)
+        {
+
+            cooklagana lasagna = new cooklagana(20,3 );
+            //lasagna.ElapsedTimeInMinutes(3, 20);
+
+            //.WriteLine(lasagna.RemainingMinutesInOven(20));
+            Console.WriteLine("Minutos restantes: " + lasagna.remainingMinInOver(20));
+            Console.WriteLine("Tiempo de preparación (2 capas): " + lasagna.epreparationtimeinmin(2));
+            Console.WriteLine("Tiempo total transcurrido (3 capas, 20 min en horno): " + lasagna.ElapsedTimeInMinutes(3, 20));
+        }
+    }
+
+
+
+
+
+    public class cooklagana 
+    {
+        //parameter 
+        public cooklagana( int minINOven, int layers) 
+        { 
+            this.minINOven = minINOven;
+            this.layers = layers;
+
+
+        }
+
+
+        public int minINOven = 0;
+        public int layers = 0;
+        
+        //public int Testimado = 40;
+
+        //method 
+        public void timetocook() 
+        {
+            Console.WriteLine("the lasagna will take 40 min to be cook ");
+        }
+        //method 
+        public int  remainingMinInOver(int minINOven)  
+        {
+
+        int Testimado = 40;
+        int resultadomininoven = Testimado - minINOven;
+            return resultadomininoven;
+         
+        
+        }
+        //method de preparacion de la lagna 
+        public int epreparationtimeinmin(int layers) 
+        {
+
+            int resultadoslayers = layers * 2;
+
+            return resultadoslayers;
+        
+        }
+        //metodo
+        public int ElapsedTimeInMinutes(int layers,  int resultadomininoven) 
+        
+        {
+
+             return resultadomininoven + (layers * 2);
+
+
+        }
+
+
+
+
+
+
+
+
+    }
+}
 
