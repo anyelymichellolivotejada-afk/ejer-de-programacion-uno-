@@ -1,0 +1,95 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.WindowsRuntime;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp3
+{
+    public class Juegodepelea
+    {
+
+
+        //constructro 
+        public Juegodepelea(bool caballerodespierto, bool arquerodespierto, bool pricionerodespierto, bool mascotamagicapresente)
+        {
+            this.caballerodespierto = caballerodespierto;
+            this.arquerodespierto = arquerodespierto;
+            this.pricionerodespierto = pricionerodespierto;
+            this.mascotamagicapresente = mascotamagicapresente;
+        }
+        //opcionoes posible 
+
+
+
+
+
+
+
+        //comprobar si el caballero esta despierto 
+        public bool caballerodespierto = true;
+        public bool arquerodespierto = true;
+        public bool pricionerodespierto = true;
+        public bool mascotamagicapresente  = true;
+        public bool ataquerapido(bool caballerodespierto)
+        {
+            if (caballerodespierto == true)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            
+            }
+        }
+        //comprobar si el grupo puede ser espidado 
+        public bool elgrupopuedeserespiado(bool caballerodespierto, bool arquerodespierto, bool pricionerodespierto )
+        {
+            if(caballerodespierto || arquerodespierto || pricionerodespierto == true ) 
+            {  
+
+                return true;
+            }else 
+
+            {
+
+                return false;
+
+            }
+        }
+        //Hacerle senales al pricionero 
+
+        public bool hacerlesenalesalpricionero(bool pricionerodespierto, bool arquerodespierto) 
+        {
+            if (arquerodespierto == false)
+            {
+                return true;
+
+
+            }
+            else 
+            {
+                return false;
+            
+            }
+            
+        }
+        //comprobar si el pricionero puede ser liberado
+        public bool pricioneroliberado(bool caballerodespierto, bool arquerodespierto, bool pricionerodespiert, bool mascotamagicapresente) 
+        {
+            if (caballerodespierto == false && arquerodespierto == false && pricionerodespiert == true && mascotamagicapresente == true)
+            {
+                return true;
+
+            }
+            else { return false; }
+              
+        }
+
+
+
+    }
+}
