@@ -1,0 +1,32 @@
+using System;
+
+static class LogLine
+{
+    // 1. Obtener el mensaje limpio
+    public static string Message(string logLine)
+    {
+        // Buscamos dónde están los dos puntos y un espacio ": "
+        int startIndex = logLine.IndexOf(": ") + 2;
+        
+        // Cortamos desde ahí en adelante y le quitamos espacios/saltos de línea con Trim()
+        return logLine.Substring(startIndex).Trim();
+    }
+
+    // 2. Obtener el nivel de registro en minúsculas
+    public static string LogLevel(string logLine)
+    {
+        // Buscamos el cierre del corchete ']'
+        int endIndex = logLine.IndexOf(']');
+        
+        // Extraemos lo que está dentro de los corchetes (desde el carácter 1 hasta antes del corchete)
+        // y lo convertimos a minúsculas con ToLower()
+        return logLine.Substring(1, endIndex - 1).ToLower();
+    }
+
+    // 3. Reformatear la línea combinando mensaje y nivel
+    public static string Reformat(string logLine)
+    {
+        // Reutilizamos los métodos anteriores y usamos interpolación ($) para ordenarlo
+        return $"{Message(logLine)} ({LogLevel(logLine)})";
+    }
+}
