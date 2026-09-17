@@ -8,7 +8,30 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp3
 {
-    public class Juegodepelea
+//main class 
+public class Program
+{
+    static void Main(string[] args)
+    {
+        Juegodepelea rescate1 = new Juegodepelea(false,false, true,true);
+        Console.WriteLine("opciones para la mision de rescare");
+        Console.WriteLine("ataque rapido, es posible: {0}",rescate1.ataquerapido(false ));
+        Console.WriteLine("Hacerle senas al pricionero, es posible: {0}", rescate1.hacerlesenalesalpricionero(false, false));
+        Console.WriteLine("ataque rapido, es posible: {0}", rescate1.elgrupopuedeserespiado(false, false, true));
+        Console.WriteLine("podemos liberara al pricionero, es posible: {0}", rescate1.pricioneroliberado(false, false, true, true));
+
+    }
+
+
+}
+    
+
+
+
+
+
+
+public class Juegodepelea
     {
 
 
