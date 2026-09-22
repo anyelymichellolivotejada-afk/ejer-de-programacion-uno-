@@ -1,0 +1,104 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Xml.Schema;
+
+namespace ConsoleApp7
+{
+    public class AssemblyLine
+    {
+
+        public int  speed { get; set; }
+        public int porcentage_de_succe { get; set; }
+
+        public double produccion { get; set; }
+        public double produccionexitosa { get; set; }
+
+        //constructor
+        public AssemblyLine(int speed)
+        {
+            this.speed = speed;
+        
+        }
+
+
+        //metodo para calcular el successte
+        public void Successrate() 
+        {
+            if (speed == 0)
+            {
+                porcentage_de_succe = 0;
+                Console.WriteLine("with an speed of {0}, the successtare is {1}%", speed, porcentage_de_succe);
+
+            }
+            else if (speed <= 4)
+            {
+                porcentage_de_succe = 100;
+                Console.WriteLine("with an speed of {0}, the successtare is {1}%", speed, porcentage_de_succe);
+            }
+            else if (speed >= 5 && speed <= 8)
+            {
+                porcentage_de_succe = 90;
+                Console.WriteLine("with an speed of {0}, the successtare is {1}%", speed, porcentage_de_succe);
+            }
+            else if (speed == 9) 
+            {
+                porcentage_de_succe = 80;
+                Console.WriteLine("with an speed of {0}, the successtare is {1}%", speed, porcentage_de_succe);
+            }
+            else
+
+            {
+                porcentage_de_succe = 77;
+
+                Console.WriteLine("with an speed of {0}, the successtare is {1}%", speed, porcentage_de_succe); }
+
+        
+       
+        }
+        //metodo para calcular el tiempo de produccion
+        public void produccionrateperhour() 
+        {
+            //recordar que por horase se hace 221 carros y que que mmultiplicar el speeed
+            //por la contidad de horas y sacar el porcentage que si se salva osea que se produce 
+             int produccion = 221 * speed;
+             produccionexitosa = (produccion * porcentage_de_succe) / 100.0;
+            Console.WriteLine("the produccion per hour is :{0}",produccionexitosa);
+
+        }
+        //caros que se construten por min
+        public void produccionratepermin(double produccionexitosa) 
+        {
+            double produccionexitosa_min = produccionexitosa / 60.0;
+            Console.WriteLine("the produccion per minute is: {0}", produccionexitosa_min);
+
+
+        }
+
+    }
+}
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp7
+{
+    public class Program
+    {
+        static void Main(string[] args)
+        {
+
+            AssemblyLine LINEA1 = new AssemblyLine(7);
+            LINEA1.Successrate();
+            LINEA1.produccionrateperhour();
+            LINEA1.produccionratepermin(LINEA1);
+
+
+        }
+    }
+}
