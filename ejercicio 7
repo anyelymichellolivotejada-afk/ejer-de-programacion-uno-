@@ -1,0 +1,74 @@
+using System;
+using System.Text;
+
+public static class Identifier
+{
+    public static string Clean(string input)
+    {
+        var result = new StringBuilder();
+        bool capitalizeNext = false;
+
+        foreach (char c in input)
+        {
+          
+            if (c == ' ')
+            {
+                result.Append('_');
+                continue;
+            }
+
+            if (char.IsControl(c))
+            {
+                result.Append("CTRL");
+                continue;
+            }
+
+            // 3. Convertir kebab-case a camelCase
+            if (c == '-')
+            {
+                capitalizeNext = true;
+                continue;
+            }
+
+            // 4. Omitir caracteres que no sean letras
+            if (!char.IsLetter(c))
+            {
+                continue;
+            }
+
+            // 5. Omitir letras griegas minúsculas (α a ω)
+            if (c >= 'α' && c <= 'ω')
+            {
+                continue;
+            }
+
+            // Aplicar camelCase si corresponde
+            if (capitalizeNext)
+            {
+                result.Append(char.ToUpper(c));
+                capitalizeNext = false;
+            }
+            else
+            {
+                result.Append(c);
+            }
+        }
+
+        return result.ToString();
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        // Ejemplos de prueba
+        string ejemplo1 = "my-variable name\nαβγ";
+        string ejemplo2 = "hello world";
+        string ejemplo3 = "clean-this-string";
+
+        Console.WriteLine("Ejemplo 1: " + Identifier.Clean(ejemplo1));
+        Console.WriteLine("Ejemplo 2: " + Identifier.Clean(ejemplo2));
+        Console.WriteLine("Ejemplo 3: " + Identifier.Clean(ejemplo3));
+    }
+}
