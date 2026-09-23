@@ -1,0 +1,61 @@
+using System;
+
+abstract class Character
+{
+    private readonly string _characterType;
+
+    protected Character(string characterType)
+    {
+        _characterType = characterType;
+    }
+
+    // Tarea 2: Hacer que los personajes no sean vulnerables por defecto
+    public virtual bool Vulnerable() => false;
+
+    public virtual int DamagePoints(Character target) => 0;
+
+    // Tarea 1: Describir un personaje sobrescribiendo ToString()
+    public override string ToString() => $"Character is a {_characterType}";
+}
+
+class Warrior : Character
+{
+    public Warrior() : base("Warrior") { }
+
+    // Tarea 6: Calcular los puntos de daño para un Warrior
+    public override int DamagePoints(Character target)
+    {
+        // 10 de daño si el objetivo es vulnerable, 6 si no lo es
+        return target.Vulnerable() ? 10 : 6;
+    }
+}
+
+class Wizard : Character
+{
+    private bool _spellPrepared;
+
+    public Wizard() : base("Wizard")
+    {
+        _spellPrepared = false;
+    }
+
+    // Tarea 3: Permitir al Wizard preparar un hechizo
+    public void PrepareSpell()
+    {
+        _spellPrepared = true;
+    }
+
+    // Tarea 4: Hacer que los Wizards sean vulnerables cuando no han preparado un hechizo
+    public override bool Vulnerable()
+    {
+        // Es vulnerable si NO ha preparado un hechizo
+        return !_spellPrepared;
+    }
+
+    // Tarea 5: Calcular los puntos de daño para un Wizard
+    public override int DamagePoints(Character target)
+    {
+        // 12 de daño si preparó hechizo, 3 si no lo hizo
+        return _spellPrepared ? 12 : 3;
+    }
+}
