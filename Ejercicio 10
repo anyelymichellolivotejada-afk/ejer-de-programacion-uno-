@@ -1,0 +1,93 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Ejercicio_10
+{
+    public class RemoteControlCar
+    {
+        public int speed;
+        public int distancedriven { get; set; }
+        public bool batteryDrain = false;
+        public RemoteControlCar(int speed, bool batteryDrain)
+        {
+
+            this.speed = speed;
+            this.batteryDrain = batteryDrain;
+        }
+
+        //drive the car
+        public void Drive(int speed)
+        {
+            distancedriven += speed;
+
+
+        }
+        public int Distancedriven() { return distancedriven; }
+
+
+
+
+
+        //metodo
+        public  bool teryDrainMethod(bool  batteryDrain)
+        {
+            return batteryDrain;
+
+            //devolver un buleano 
+        }
+
+
+
+        //5. Create the Nitro remote control car
+        public class NitroRemoteControlCar : RemoteControlCar
+        {
+            public NitroRemoteControlCar(int speed, bool batteryDrain) : base(speed, batteryDrain)
+            {
+                this.speed = speed;
+                this.batteryDrain = batteryDrain;
+            }
+            public void Drive()
+            {
+                distancedriven += speed * 2;
+            }
+        }
+
+
+
+
+        //6. Check if a remote control car can finish a race
+
+
+
+
+
+
+
+
+
+    }
+
+
+    public class race_track
+    {
+        public int distance;
+        //constructror
+        public race_track(int distance)
+        {
+            this.distance = distance;
+        }
+
+    }
+
+
+
+
+
+
+
+}
