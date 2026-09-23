@@ -1,0 +1,44 @@
+using System;
+
+class GameMaster
+{
+    // 1. Describe a un personaje
+    public static string Describe(Character character)
+    {
+        return $"You're a level {character.Level} {character.Class} with {character.HitPoints} hit points.";
+    }
+
+    // 2. Describe un destino
+    public static string Describe(Destination destination)
+    {
+        return $"You've arrived at {destination.Name}, which has {destination.Inhabitants} inhabitants.";
+    }
+
+    // 3. Describe el método de viaje
+    public static string Describe(TravelMethod travelMethod)
+    {
+        if (travelMethod == TravelMethod.Horseback)
+        {
+            return "You're traveling to your destination on horseback.";
+        }
+        
+        return "You're traveling to your destination by walking.";
+    }
+
+    // 4. Describe a un personaje viajando a un destino especificando el medio
+    public static string Describe(Character character, Destination destination, TravelMethod travelMethod)
+    {
+        string characterDesc = Describe(character);
+        string travelDesc = Describe(travelMethod);
+        string destinationDesc = Describe(destination);
+
+        return $"{characterDesc} {travelDesc} {destinationDesc}";
+    }
+
+    // 5. Describe a un personaje viajando asumiendo que va caminando (sin especificar medio)
+    public static string Describe(Character character, Destination destination)
+    {
+        // Reutilizamos el método anterior pasando Walking por defecto
+        return Describe(character, destination, TravelMethod.Walking);
+    }
+}
