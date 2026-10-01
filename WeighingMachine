@@ -1,0 +1,81 @@
+using ejercicios_del_peso;
+using System;
+
+internal class Program
+{
+    static void Main(string[] args)
+    {
+
+        Basculadepeso mipeso = new Basculadepeso(2, 86.6770);
+        Console.WriteLine(mipeso.MostrarTara);
+
+    }
+}
+
+
+namespace ejercicios_del_peso
+{
+    public class Basculadepeso
+    {
+
+        public int presicion { get; set; }
+        private double _pesarse;
+        public double pesarse
+        {
+            get => _pesarse;
+
+            set
+            {
+                if (value < 0) {
+                    throw new ArgumentOutOfRangeException(nameof(value), "Estimado el peso no puede ser negativo");
+
+
+
+                }
+
+                _pesarse = value;
+            }
+        }
+
+        //implementacion de latare
+        //tare prederminado
+        public double TareAjuste { get; set; } = 5.0;
+
+
+        //mostrar peso 
+        public String MostrarTara { 
+
+            get
+            {
+                double pesotara = pesarse - TareAjuste;
+                return $"{pesotara.ToString("F"+presicion)}Kg";
+
+
+
+            }
+        
+        
+        
+        }
+
+
+        //constrctor 
+        public Basculadepeso(int presicion, double _pesarse) 
+        {
+            this.presicion = presicion;
+            this._pesarse = _pesarse;
+        
+        
+        }
+
+
+
+
+
+
+
+
+
+
+    }
+}
