@@ -1,0 +1,53 @@
+using System;
+
+namespace log_13
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+        }
+    }
+
+    // 1. El enum debe ser public y tener los valores numéricos exactos
+    public enum LogLevel
+    {
+        Unknown = 0,
+        Trace = 1,
+        Debug = 2,
+        Info = 4,
+        Warning = 5,
+        Error = 6,
+        Fatal = 42
+    }
+
+    public static class LogLine 
+    {
+        // 2. Nombre exacto y tipo de retorno LogLevel
+        public static LogLevel ParseLogLevel(string logLine) 
+        { 
+            int index = logLine.IndexOf("]");
+            if (index == -1)
+                return LogLevel.Unknown;
+
+            string level = logLine.Substring(1, index - 1);
+            
+            return level switch
+            {
+                "TRC" => LogLevel.Trace,
+                "DBG" => LogLevel.Debug,
+                "INF" => LogLevel.Info,
+                "WRN" => LogLevel.Warning,
+                "ERR" => LogLevel.Error,
+                "FTL" => LogLevel.Fatal,
+                _ => LogLevel.Unknown
+            };
+        }
+
+        // 3. Nombre exacto para la tarea del formato corto
+        public static string OutputForShortLog(LogLevel logLevel, string message)
+        {
+            return $"{(int)logLevel}:{message}";
+        }
+    }
+}
