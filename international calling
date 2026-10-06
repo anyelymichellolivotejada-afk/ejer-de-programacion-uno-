@@ -1,0 +1,121 @@
+using System;
+using System.Collections.Generic;
+
+namespace EJERCICIO_17
+{
+    internal class Program
+    {
+        // El punto de entrada: aquí es donde mandas a llamar todo para que se muestre en consola
+        static void Main(string[] args)
+        {
+            var dialingcodes = new Dictionary<int, string>
+            {
+                { 1, "Estados Unidos" },
+                { 55, "Brasil" },
+                { 91, "India" }
+            };
+
+            Console.WriteLine("--- 1. Diccionario Inicial ---");
+            Console.WriteLine(Getexsistingdiccionary(dialingcodes));
+
+            Console.WriteLine("--- 2. Añadiendo un país (Reino Unido) ---");
+            Console.WriteLine(AddcountrytoanexistindDic(dialingcodes));
+
+            Console.WriteLine("--- 3. Buscando el código 1 ---");
+            getcountrynameformdic(dialingcodes, 1);
+
+            Console.WriteLine("\n--- 4. Comprobando si existe el código 55 ---");
+            bool existe = checkcodeexists(dialingcodes, 55);
+            Console.WriteLine($"¿Existe el código 55?: {existe}");
+
+            Console.WriteLine("\n--- 5. Actualizando el código 1 a 'USA' ---");
+            updatedictionary(dialingcodes, 1, "USA");
+
+            Console.WriteLine("\n--- 6. País con el nombre más largo ---");
+            findlongestcountryname(dialingcodes);
+
+            Console.WriteLine("\n--- 7. Eliminando el código 91 ---");
+            removedicc(dialingcodes, 91);
+        }
+
+        // ==================== MÉTODOS (Fuera del Main, al nivel de la clase) ====================
+
+        static string Getexsistingdiccionary(Dictionary<int, string> dialingcodes) 
+        {
+            string resultado = "";
+            foreach (var item in dialingcodes) 
+            {
+               resultado += item.Key + " - " + item.Value + "\n";
+            }
+            return resultado; // El return siempre va al final, después de armar el string
+        }
+
+        static string AddcountrytoanexistindDic(Dictionary<int, string> dialingcodes) 
+        {
+            // Evitamos duplicados si se vuelve a ejecutar
+            if (!dialingcodes.ContainsKey(44))
+            {
+                dialingcodes.Add(44, "United Kingdom");
+            }
+
+            string resultado = "";
+            foreach (var item in dialingcodes)
+            {
+                resultado += item.Key + " - " + item.Value + "\n";
+            }
+            return resultado;
+        }
+
+        static void getcountrynameformdic(Dictionary<int, string> dialingcodes, int codigo) 
+        {
+            if (dialingcodes.TryGetValue(codigo, out string pais))
+            {
+                Console.WriteLine(pais);
+            }
+            else 
+            {
+                Console.WriteLine("No se encontró el país");
+            }
+        }
+
+        static bool checkcodeexists(Dictionary<int, string> dialingcodes, int codigo)
+        {
+            return dialingcodes.ContainsKey(codigo);
+        }
+
+        static void updatedictionary(Dictionary<int, string> dialingcodes, int codigo, string Ncountry)
+        {
+            if (dialingcodes.ContainsKey(codigo)) 
+            {
+                dialingcodes[codigo] = Ncountry;
+
+                foreach (var item in dialingcodes)
+                {
+                    Console.WriteLine(item.Key + " - " + item.Value);
+                }
+            }
+        }
+
+        static void removedicc(Dictionary<int, string> dialingcodes, int codigo) 
+        {
+            dialingcodes.Remove(codigo);
+            foreach (var item in dialingcodes)
+            {
+                Console.WriteLine(item.Key + " - " + item.Value);
+            }
+        }
+
+        static void findlongestcountryname(Dictionary<int, string> dialingcodes) 
+        {
+            var longest = string.Empty;
+            foreach (var item in dialingcodes) 
+            {
+                if (item.Value.Length > longest.Length) 
+                {
+                    longest = item.Value;
+                }
+            }
+            Console.WriteLine("País con nombre más largo: " + longest);
+        }
+    }
+}
