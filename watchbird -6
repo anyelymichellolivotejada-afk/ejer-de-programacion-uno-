@@ -1,0 +1,71 @@
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace birdW6
+{
+    public class Program
+    {
+        static void Main(string[] args)
+        {
+            // 1. Probar el método estático LastWeek
+            int[] semanaPasada = BirdCount.LastWeek();
+            Console.WriteLine("--- Semana Pasada ---");
+            Console.WriteLine(string.Join(", ", semanaPasada));
+
+            // 2. Probar los métodos de instancia con un array de ejemplo
+            int[] birdsPerDay = { 2, 5, 0, 7, 4, 1 };
+            BirdCount tracker = new BirdCount(birdsPerDay);
+
+            Console.WriteLine("\n--- Recuento de Hoy ---");
+            Console.WriteLine($"Pájaros hoy: {tracker.Today()}");
+
+            // 3. Incrementar recuento de hoy y mostrarlo
+            tracker.IncrementTodaysCount();
+            Console.WriteLine($"Pájaros hoy (después de incrementar): {tracker.Today()}");
+
+            // Pausa para que la consola no se cierre sola
+            Console.WriteLine("\nPresiona cualquier tecla para salir...");
+            Console.ReadKey();
+        }
+    }
+
+    public class BirdCount
+    {
+        // Variable interna para guardar los datos por día
+        private int[] _birdsPerDay;
+
+        // Constructor para recibir el array de la clase
+        public BirdCount(int[] birdsPerDay)
+        {
+            _birdsPerDay = birdsPerDay;
+        }
+
+        // 1. Método estático que devuelve los recuentos de la semana pasada
+        public static int[] LastWeek()
+        {
+            return new int[] { 0, 2, 5, 3, 7, 8, 4 };
+        }
+
+        // 2. Método para obtener los pájaros de hoy (el último elemento del array)
+        public int Today()
+        {
+            if (_birdsPerDay == null || _birdsPerDay.Length == 0)
+                return 0;
+
+            return _birdsPerDay[_birdsPerDay.Length - 1];
+        }
+
+        // 3. Método para incrementar en 1 el recuento de hoy
+        public void IncrementTodaysCount()
+        {
+            if (_birdsPerDay != null && _birdsPerDay.Length > 0)
+            {
+                _birdsPerDay[_birdsPerDay.Length - 1]++;
+            }
+        }
+    }
+}
